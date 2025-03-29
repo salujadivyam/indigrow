@@ -1,7 +1,12 @@
 Indigrow - README
+
 Team Name: HackKnights
+
 Hackathon Name: Hacknite
+
 Project Name: Indigrow
+
+
 Overview
 
 The web program Indigrow, which is built on Python, was created to help farmers boost their crop yields.  Indigrow gives farmers practical information including weather updates, irrigation techniques, crop and fertilizer recommendations, and yield estimates by fusing real-time data, machine learning, and intuitive user interfaces.  Our mission is to provide planting solutions that increase the productivity and efficiency of farming.
