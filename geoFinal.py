@@ -1,6 +1,6 @@
 import folium
 import os
-#from frontend.py import  user_data # type: ignore
+from frontend.py import  user_data
 from geopy.geocoders import Nominatim
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -56,8 +56,8 @@ def get_map_image(location):
 
 # Example Usage
 #location = input("Enter a location (e.g., New York, Eiffel Tower): ")
-#location=user_data[1]
-location="Chennai"
+location=user_data[1]
+#location="Chennai"
 img=get_map_image(location)
 file_path = os.path.abspath(img)
 print(file_path)
