@@ -1,6 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QLineEdit
 from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QVBoxLayout, QGridLayout
 from PyQt5.QtGui import QFontDatabase, QFont, QPixmap
 from PyQt5.QtCore import Qt
 
@@ -67,12 +68,9 @@ class FirstPage(QWidget):
         self.second_page = SecondPage()
         self.second_page.show()
 
+
 class SecondPage(QWidget):
     def __init__(self):
-        super().__init__()
-        self.setWindowTitle("Indigrow Dashboard") 
-        self.setGeometry(210, 100, 1500, 1000)
-        self.setStyleSheet("background-color: white;")
 
         font_path1 = "C:/Users/athar/Downloads/hackknights/sources/KronaOne-Regular.ttf"
         font_id1 = QFontDatabase.addApplicationFont(font_path1)
@@ -82,6 +80,11 @@ class SecondPage(QWidget):
         font_id2 = QFontDatabase.addApplicationFont(font_path2)
         font_family2 = QFontDatabase.applicationFontFamilies(font_id2)[0] if font_id2 != -1 else "Arial"
 
+        super().__init__()
+        self.setWindowTitle("Indigrow Dashboard") 
+        self.setGeometry(210, 100, 1500, 1000)
+        self.setStyleSheet("background-color: white;")
+        
         # Page title label
         self.label1 = QLabel("indigrow", self)
         self.label1.setFont(QFont(font_family1, 25))
@@ -98,26 +101,33 @@ class SecondPage(QWidget):
         self.image_label.move(320, 20)
 
         # **Input Fields**
-        self.text_location = QLineEdit(self)
-        self.text_location.setPlaceholderText("Enter Location")
-        self.text_location.setFont(QFont(font_family2, 12))
-        self.text_location.setStyleSheet("padding: 10px; border: 1px solid grey; border-radius: 15px;")
-        self.text_location.adjustSize()
-        self.text_location.setGeometry(30, 100, 400, 50)
+        self.text_state = QLineEdit(self)
+        self.text_state.setPlaceholderText("State")
+        self.text_state.setFont(QFont(font_family2, 12))
+        self.text_state.setStyleSheet("padding: 10px; border: 1px solid grey; border-radius: 15px;")
+        self.text_state.adjustSize()
+        self.text_state.setGeometry(30, 100, 300, 50)
+
+        self.text_district = QLineEdit(self)
+        self.text_district.setPlaceholderText("District")
+        self.text_district.setFont(QFont(font_family2, 12))
+        self.text_district.adjustSize()
+        self.text_district.setStyleSheet("padding: 10px; border: 1px solid grey; border-radius: 15px;")
+        self.text_district.setGeometry(340, 100, 300, 50)
 
         self.text_soil = QLineEdit(self)
         self.text_soil.setPlaceholderText("Enter Soil Type")
         self.text_soil.setFont(QFont(font_family2, 12))
         self.text_soil.adjustSize()
         self.text_soil.setStyleSheet("padding: 10px; border: 1px solid grey; border-radius: 15px;")
-        self.text_soil.setGeometry(450, 100, 400, 50)
+        self.text_soil.setGeometry(650, 100, 300, 50)
 
         self.text_crop = QLineEdit(self)
         self.text_crop.setPlaceholderText("Enter Crop Type")
         self.text_crop.adjustSize()
         self.text_crop.setFont(QFont(font_family2, 12))
         self.text_crop.setStyleSheet("padding: 10px; border: 1px solid grey; border-radius: 15px;")
-        self.text_crop.setGeometry(870, 100, 400, 50)
+        self.text_crop.setGeometry(960, 100, 300, 50)
 
         # **Buttons**
         self.submit_button = QPushButton("Submit", self)
@@ -133,12 +143,13 @@ class SecondPage(QWidget):
         self.close_button.clicked.connect(self.close)
 
     def process_input(self):
-        location = self.text_location.text()
+        state = self.text_state.text()
+        district = self.text_district.text()
         soil = self.text_soil.text()
         crop = self.text_crop.text()
     
-        user_data = [location, soil, crop]
-        print(f"User Data: {user_data}")  # Modify this to store or process the data further
+        user_data = [state, district, soil, crop]
+        print(f"User Data: {user_data}")  
 
         # Show notification
         msg = QMessageBox()
@@ -146,7 +157,14 @@ class SecondPage(QWidget):
         msg.setText("Data Submitted Successfully!")
         msg.setWindowTitle("Success")
         msg.setStandardButtons(QMessageBox.Ok)
-        msg.exec_() # Modify this to store or process the data further
+        msg.exec_() 
+    
+        # Clears input fields after submission
+        self.text_soil.clear()
+        self.text_crop.clear()
+        self.text_state.clear()
+        self.text_district.clear()
+
 
 app = QApplication(sys.argv)
 window = FirstPage()
