@@ -142,6 +142,78 @@ class SecondPage(QWidget):
         self.close_button.setGeometry(1330, 920, 130, 50)
         self.close_button.clicked.connect(self.close)
 
+        self.label3 = QLabel("weather", self)
+        self.label3.setFont(QFont(font_family2, 15))
+        self.label3.move(30, 260)
+        self.label3.setStyleSheet("color: black;")
+        self.label3.adjustSize()
+
+        #from file.py import weather
+        weather= "Sunny"
+        self.label4 = QLabel(weather, self)
+        self.label4.setFont(QFont(font_family2, 15))
+        self.label4.move(30,310)
+        self.label4.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
+        self.label4.adjustSize()
+
+        self.label5 = QLabel("irrigation", self)
+        self.label5.setFont(QFont(font_family2, 15))
+        self.label5.move(300, 260)
+        self.label5.setStyleSheet("color: black;")
+        self.label5.adjustSize()
+
+        #from file.py import irrigation
+        irrigation= "Drip Irrigation"
+        self.label6 = QLabel(irrigation, self)
+        self.label6.setFont(QFont(font_family2, 15))
+        self.label6.move(300,310)
+        self.label6.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
+        self.label6.adjustSize()
+
+        self.label7 = QLabel("best crop", self)
+        self.label7.setFont(QFont(font_family2, 15))
+        self.label7.move(600, 260)
+        self.label7.setStyleSheet("color: black;")
+        self.label7.adjustSize()
+
+        #from file.py import bestcrop
+        bestcrop= "rice"
+        self.label8 = QLabel(bestcrop, self)
+        self.label8.setFont(QFont(font_family2, 15))
+        self.label8.move(600,310)
+        self.label8.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
+        self.label8.adjustSize()
+
+        self.label9 = QLabel("best fertilizer", self)
+        self.label9.setFont(QFont(font_family2, 15))
+        self.label9.move(30, 400)
+        self.label9.setStyleSheet("color: black;")
+        self.label9.adjustSize()
+
+        #from file.py import bestfertilizer
+        bestfertilizer= "npk"
+        self.label10 = QLabel(bestfertilizer, self)
+        self.label10.setFont(QFont(font_family2, 15))
+        self.label10.move(30,450)
+        self.label10.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
+        self.label10.adjustSize()
+
+        self.label9 = QLabel("estimated yield", self)
+        self.label9.setFont(QFont(font_family2, 15))
+        self.label9.move(300, 400)
+        self.label9.setStyleSheet("color: black;")
+        self.label9.adjustSize()
+
+        #from file.py import estimatedyield
+        estimatedyield= "1000 kg"
+        self.label10 = QLabel(estimatedyield, self)
+        self.label10.setFont(QFont(font_family2, 15))
+        self.label10.move(300,450)
+        self.label10.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
+        self.label10.adjustSize()
+
+
+
     def process_input(self):
         state = self.text_state.text()
         district = self.text_district.text()
@@ -164,6 +236,9 @@ class SecondPage(QWidget):
         self.text_crop.clear()
         self.text_state.clear()
         self.text_district.clear()
+    
+
+
 
 
 app = QApplication(sys.argv)
