@@ -37,3 +37,18 @@ def trainmodels(features,targets):
             model.fit(features,targetvalues)
             models[target_name]=model
             return models
+
+def predict(models, labelEncoders, state, area, soil_type, crop):
+    encoded_inputs = [labelEncoders["State"].transform([state])[0],labelEncoders["Area"].transform([area])[0],labelEncoders["Soil Type"].transform([soil_type])[0],labelEncoders["Crop"].transform([crop])[0]]
+    predictions = {}
+    for target_name, model_info in models.items():
+        if isinstance(model_info, tuple):
+            model, le = model_info
+            prediction_encoded = model.predict([encoded_inputs])[0]
+            prediction = le.inverse_transform([int(prediction_encoded)])[0]
+        else:
+            prediction = model_info.predict([encoded_inputs])[0]
+        predictions[target_name] = prediction
+    
+    return predictions
+
