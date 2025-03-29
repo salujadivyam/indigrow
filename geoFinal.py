@@ -1,6 +1,6 @@
 import folium
 import os
-from frontend.py import  user_data
+from frontend import  user_data
 from geopy.geocoders import Nominatim
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -8,7 +8,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 import threading
 import time
-from PIL import Image
+
 
 def get_map_image(location):
     geolocator = Nominatim(user_agent="geo_locator")

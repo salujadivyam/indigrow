@@ -4,6 +4,15 @@ from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtWidgets import QVBoxLayout, QGridLayout
 from PyQt5.QtGui import QFontDatabase, QFont, QPixmap
 from PyQt5.QtCore import Qt
+import folium
+import os
+from geopy.geocoders import Nominatim
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from http.server import HTTPServer, SimpleHTTPRequestHandler
+import threading
+import time
 
 class FirstPage(QWidget):
     def __init__(self):
@@ -198,30 +207,28 @@ class SecondPage(QWidget):
         self.label10.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
         self.label10.adjustSize()
 
-        self.label9 = QLabel("estimated yield", self)
-        self.label9.setFont(QFont(font_family2, 15))
-        self.label9.move(300, 400)
-        self.label9.setStyleSheet("color: black;")
-        self.label9.adjustSize()
+        self.label11 = QLabel("estimated yield", self)
+        self.label11.setFont(QFont(font_family2, 15))
+        self.label11.move(300, 400)
+        self.label11.setStyleSheet("color: black;")
+        self.label11.adjustSize()
 
         #from file.py import estimatedyield
         estimatedyield= "1000 kg"
-        self.label10 = QLabel(estimatedyield, self)
-        self.label10.setFont(QFont(font_family2, 15))
-        self.label10.move(300,450)
-        self.label10.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
-        self.label10.adjustSize()
-
-
+        self.label12 = QLabel(estimatedyield, self)
+        self.label12.setFont(QFont(font_family2, 15))
+        self.label12.move(300,450)
+        self.label12.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
+        self.label12.adjustSize()
 
     def process_input(self):
         state = self.text_state.text()
         district = self.text_district.text()
         soil = self.text_soil.text()
         crop = self.text_crop.text()
-    
-        user_data = [state, district, soil, crop]
-        print(f"User Data: {user_data}")  
+
+        self.user_data = [state, district, soil, crop]
+        print("User Data:", self.user_data)
 
         # Show notification
         msg = QMessageBox()
@@ -229,16 +236,13 @@ class SecondPage(QWidget):
         msg.setText("Data Submitted Successfully!")
         msg.setWindowTitle("Success")
         msg.setStandardButtons(QMessageBox.Ok)
-        msg.exec_() 
-    
+        msg.exec_()
+
         # Clears input fields after submission
         self.text_soil.clear()
         self.text_crop.clear()
         self.text_state.clear()
         self.text_district.clear()
-    
-
-
 
 
 app = QApplication(sys.argv)
