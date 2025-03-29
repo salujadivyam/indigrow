@@ -1,5 +1,6 @@
 import folium
-from frontend.py import  user_data # type: ignore
+import os
+#from frontend.py import  user_data # type: ignore
 from geopy.geocoders import Nominatim
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -14,14 +15,14 @@ def get_map_image(location):
     loc = geolocator.geocode(location)
 
     if not loc:
-        print("❌ Location not found! Please enter a valid place.")
+        print(" Location not found! Please enter a valid place.")
         return
     
     lat, lon = loc.latitude, loc.longitude
-    print(f"📍 Latitude: {lat}, Longitude: {lon}")
+    print(f" Latitude: {lat}, Longitude: {lon}")
 
     my_map = folium.Map(location=[lat, lon], zoom_start=15, tiles="OpenStreetMap")
-    folium.Marker([lat, lon], popup=f"📍 {location}", tooltip="Click for details").add_to(my_map)
+    folium.Marker([lat, lon], popup=f" {location}", tooltip="Click for details").add_to(my_map)
 
     map_file = "map.html"
     my_map.save(map_file)
@@ -46,8 +47,8 @@ def get_map_image(location):
 
     image_file = "map.png"
     return(image_file)
-    #driver.save_screenshot(image_file)
-    #driver.quit()
+    driver.save_screenshot(image_file)
+    driver.quit()
 
     #img = Image.open(image_file)
     #img.show()
@@ -55,6 +56,8 @@ def get_map_image(location):
 
 # Example Usage
 #location = input("Enter a location (e.g., New York, Eiffel Tower): ")
-location=user_data[1]
+#location=user_data[1]
+location="Chennai"
 img=get_map_image(location)
-
+file_path = os.path.abspath(img)
+print(file_path)
