@@ -11,11 +11,11 @@ class FirstPage(QWidget):
         self.setGeometry(210, 100, 1500, 1000)
 
         # Custom fonts
-        font_path1 = "C:/Users/athar/Downloads/hackknights/sources/KronaOne-Regular.ttf"
+        font_path1 = "C://Users//athar//Downloads//hackknights//sources//KronaOne-Regular.ttf"
         font_id1 = QFontDatabase.addApplicationFont(font_path1)
         font_family1 = QFontDatabase.applicationFontFamilies(font_id1)[0] if font_id1 != -1 else "Arial"
 
-        font_path2 = "C:/Users/athar/Downloads/hackknights/sources/MartianMono-VariableFont_wdth,wght.ttf"
+        font_path2 = "C://Users//athar//Downloads//hackknights//sources//InriaSans-Bold.ttf"
         font_id2 = QFontDatabase.addApplicationFont(font_path2)
         font_family2 = QFontDatabase.applicationFontFamilies(font_id2)[0] if font_id2 != -1 else "Arial"
 
@@ -34,13 +34,14 @@ class FirstPage(QWidget):
         self.image_label.resize(150, 150)
 
         # Tagline below "Indigrow"
-        self.label2 = QLabel("solving farmer’s problems", self)
-        self.label2.setFont(QFont(font_family2, 30))
+        self.label2 = QLabel("planting solutions", self)
+        self.label2.setFont(QFont(font_family2, 23))
         self.label2.setAlignment(Qt.AlignCenter)
         self.label2.setStyleSheet("color: black;")
+        self.label2.move(748,395)  # Set position to (0, 0) to center it below the first label
         self.label2.adjustSize()
 
-        # Button to open SecondPage in a new window
+        # Button to open indigrow dashboard in a new window
         self.next_button = QPushButton("Dashboard", self)
         self.next_button.setStyleSheet("background-color: black; color: white; padding: 20px; border-radius: 20px;")
         self.next_button.setFont(QFont(font_family2, 15, QFont.Bold))
@@ -58,10 +59,6 @@ class FirstPage(QWidget):
         image_label_x = label1_x + self.label1.width() + spacing
         image_label_y = label1_y + (self.label1.height() - self.image_label.height()) // 2
         self.image_label.move(image_label_x, image_label_y)
-
-        label2_x = (self.width() - self.label2.width()) // 2
-        label2_y = label1_y + self.label1.height() + spacing
-        self.label2.move(label2_x, label2_y)
         button_margin = 30
         self.next_button.move(self.width() - self.next_button.width() - button_margin, self.height() - self.next_button.height() - button_margin)
 
@@ -73,7 +70,7 @@ class FirstPage(QWidget):
 class SecondPage(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Second Page")
+        self.setWindowTitle("Indigrow Dashboard") 
         self.setGeometry(210, 100, 1500, 1000)
         self.setStyleSheet("background-color: white;")
 
@@ -81,7 +78,7 @@ class SecondPage(QWidget):
         font_id1 = QFontDatabase.addApplicationFont(font_path1)
         font_family1 = QFontDatabase.applicationFontFamilies(font_id1)[0] if font_id1 != -1 else "Arial"
 
-        font_path2 = "C:/Users/athar/Downloads/hackknights/sources/MartianMono-VariableFont_wdth,wght.ttf"
+        font_path2 = "C://Users//athar//Downloads//hackknights//sources//InriaSans-Bold.ttf"
         font_id2 = QFontDatabase.addApplicationFont(font_path2)
         font_family2 = QFontDatabase.applicationFontFamilies(font_id2)[0] if font_id2 != -1 else "Arial"
 
@@ -125,14 +122,14 @@ class SecondPage(QWidget):
         # **Buttons**
         self.submit_button = QPushButton("Submit", self)
         self.submit_button.setFont(QFont(font_family2, 12, QFont.Bold))
-        self.submit_button.setStyleSheet("background-color: black; color: white; padding: 10px; border-radius: 10px;")
-        self.submit_button.setGeometry(30, 170, 150, 50)
+        self.submit_button.setStyleSheet("background-color: black; color: white; padding: 10px; border-radius: 20px;")
+        self.submit_button.setGeometry(30, 170, 130, 50)
         self.submit_button.clicked.connect(self.process_input)
 
         self.close_button = QPushButton("Close", self)
-        self.close_button.setFont(QFont(font_family2, 12, QFont.Bold))
-        self.close_button.setStyleSheet("background-color: black; color: white; padding: 10px; border-radius: 10px;")
-        self.close_button.setGeometry(220, 170, 150, 50)
+        self.close_button.setFont(QFont(font_family2, 15, QFont.Bold))
+        self.close_button.setStyleSheet("background-color: black; color: white; padding: 5px; border-radius: 20px;")
+        self.close_button.setGeometry(1330, 920, 130, 50)
         self.close_button.clicked.connect(self.close)
 
     def process_input(self):
