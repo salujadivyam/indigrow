@@ -19,28 +19,7 @@ def get_lat_lon(location):
     else:
         raise ValueError("Could not find location!")
 
-# Function to fetch NASA satellite image
-#def get_nasa_satellite_image(lat, lon):
-    ##params = {
-        #"SERVICE": "WMS",
-        #"VERSION": "1.3.0",
-        #"REQUEST": "GetMap",
-        #"FORMAT": "image/png",
-        #"LAYERS": LAYER,
-        #"WIDTH": WIDTH,
-        #"HEIGHT": HEIGHT,
-        #"BBOX": bbox,
-        #"CRS": "EPSG:4326",
-        #"TIME": DATE
-    #}
-    
-    #response = requests.get(NASA_GIBS_URL, params=params)
 
-    #if response.status_code == 200:
-        #image = Image.open(BytesIO(response.content))
-        #return image
-    #else:
-        #raise ValueError(f"Failed to fetch image. Status Code: {response.status_code}")
 
 # Main function
 def main():
@@ -50,13 +29,7 @@ def main():
         lat, lon = get_lat_lon(location)
         return([lat,lon])
         
-        #image = get_nasa_satellite_image(lat, lon)
-        
-        # Display the image
-        #plt.imshow(image)
-        #plt.axis("off")  # Hide axes
-        #plt.title(f"Satellite Image of {location}")
-        #plt.show()
+
     
     except Exception as e:
         print("Error:", e)
