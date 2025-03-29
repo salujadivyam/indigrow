@@ -4,12 +4,18 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.metrics import accuracy_score, mean_absolute_error
-l1=["Haryana","North","Sandy","Groundnut"]
+
+
+
+l1=["Karnataka","South","Saline","Cotton"]
 path = r"C:\Users\divyu\OneDrive\Documents\GitHub\indigrow\updated_india_agriculture_dataset.csv"
 try:
     df=pd.read_csv(path)
 except FileNotFoundError:
     print("File not Found")
+
+
+
 columns=['State','Crop','Soil','District','Irrigation Method','Best Next Crop','Best Fertilizer']
 for col in columns:
     if col not in df.columns:
@@ -20,7 +26,10 @@ for col in ['State', 'District', 'Soil', 'Crop', 'Irrigation Method', 'Best Next
     df[col] = encoders[col].fit_transform(df[col])
 
 
+
 x= df[['State','District','Crop','Soil',]]
+
+
 
 #first model : it will predict the best irrigation method
 y_predictor_irr=df['Irrigation Method']
@@ -31,6 +40,9 @@ irr_model.fit(x_train,y_train)
 y_irr_new=irr_model.predict(x_test)
 print(f"Irrigation Accuracy: {accuracy_score(y_test,y_irr_new)*100:.2f}%")
 
+
+
+
 #model 2: this predicts the est crop after the current crop is harvested
 
 y_predictor_crop=df['Best Next Crop']
@@ -40,6 +52,9 @@ crop_model.fit(x_train,y_train)
 y_crop_new=crop_model.predict(x_test)
 print(f"Best Next Crop Accuracy: {accuracy_score(y_test,y_crop_new)*100:.2f}%")
 
+
+
+
 #model 3: for fertilisers'
 y_predictor_fert=df['Best Fertilizer']
 x_train,x_test,y_train,y_test=train_test_split(x,y_predictor_fert,test_size=0.2,random_state=42)
@@ -47,6 +62,10 @@ fert_model=RandomForestClassifier(n_estimators=100,random_state=42)
 fert_model.fit(x_train,y_train)
 y_fert_new=fert_model.predict(x_test)
 print(f"Best Fertilizer Accuracy: {accuracy_score(y_test,y_fert_new)*100:.2f}%")
+
+
+
+
 
 #main function to predict the values
 def predict(state, district, soil, crop):
@@ -69,12 +88,11 @@ def predict(state, district, soil, crop):
     return irrigation_method, best_crop,best_fert
 
 
-#temporary var
+
 state = l1[0]
 district = l1[1]
 soil = l1[2]
 crop = l1[3]
-
 irrigation, best_crop, best_fert = predict(state, district, soil, crop)
 print(f"Recommended Irrigation Method: {irrigation}")
 print(f"Best Crop to Grow after {l1[3]} is: {best_crop}")
