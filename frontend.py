@@ -156,6 +156,61 @@ def frontend():
             self.label4.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
             self.label4.adjustSize()
 
+            self.label5 = QLabel("irrigation", self)
+            self.label5.setFont(QFont(font_family2, 15))
+            self.label5.move(300, 260)
+            self.label5.setStyleSheet("color: black;")
+            self.label5.adjustSize()
+
+            #from file.py import irrigation
+            #irrigation_method= "Drip Irrigation"
+            self.label6 = QLabel("-", self)
+            self.label6.setFont(QFont(font_family2, 15))
+            self.label6.move(300,310)
+            self.label6.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
+            self.label6.adjustSize()
+
+            self.label7 = QLabel("best crop", self)
+            self.label7.setFont(QFont(font_family2, 15))
+            self.label7.move(600, 260)
+            self.label7.setStyleSheet("color: black;")
+            self.label7.adjustSize()
+
+            #from file.py import bestcrop
+            #bestcrop= "rice"
+            self.label8 = QLabel("-", self)
+            self.label8.setFont(QFont(font_family2, 15))
+            self.label8.move(600,310)
+            self.label8.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
+            self.label8.adjustSize()
+
+            self.label9 = QLabel("best fertilizer", self)
+            self.label9.setFont(QFont(font_family2, 15))
+            self.label9.move(30, 400)
+            self.label9.setStyleSheet("color: black;")
+            self.label9.adjustSize()
+
+            #from file.py import bestfertilizer
+            #bestfertilizer= "npk"
+            self.label10 = QLabel("-", self)
+            self.label10.setFont(QFont(font_family2, 15))
+            self.label10.move(30,450)
+            self.label10.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
+            self.label10.adjustSize()
+
+            self.label11 = QLabel("estimated yield", self)
+            self.label11.setFont(QFont(font_family2, 15))
+            self.label11.move(300, 400)
+            self.label11.setStyleSheet("color: black;")
+            self.label11.adjustSize()
+
+            #from file.py import estimatedyield
+            self.label12 = QLabel("-", self)
+            self.label12.setFont(QFont(font_family2, 15))
+            self.label12.move(300,450)
+            self.label12.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
+            self.label12.adjustSize()
+
         def process_input(self):
             font_path1 = "C:/Users/athar/Downloads/hackknights/sources/KronaOne-Regular.ttf"
             font_id1 = QFontDatabase.addApplicationFont(font_path1)
@@ -193,62 +248,16 @@ def frontend():
             except Exception as e:
                 print(f"Error in predict function: {e}")
                 return
-
-            self.label5 = QLabel("irrigation", self)
-            self.label5.setFont(QFont(font_family2, 15))
-            self.label5.move(300, 260)
-            self.label5.setStyleSheet("color: black;")
-            self.label5.adjustSize()
-
-            #from file.py import irrigation
-            #irrigation_method= "Drip Irrigation"
-            self.label6 = QLabel(irrigation_method, self)
-            self.label6.setFont(QFont(font_family2, 15))
-            self.label6.move(300,310)
-            self.label6.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
+            
+            self.label6.setText(irrigation_method)
             self.label6.adjustSize()
-
-            self.label7 = QLabel("best crop", self)
-            self.label7.setFont(QFont(font_family2, 15))
-            self.label7.move(600, 260)
-            self.label7.setStyleSheet("color: black;")
-            self.label7.adjustSize()
-
-            #from file.py import bestcrop
-            #bestcrop= "rice"
-            self.label8 = QLabel(best_crop, self)
-            self.label8.setFont(QFont(font_family2, 15))
-            self.label8.move(600,310)
-            self.label8.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
+            self.label8.setText(best_crop)
             self.label8.adjustSize()
-
-            self.label9 = QLabel("best fertilizer", self)
-            self.label9.setFont(QFont(font_family2, 15))
-            self.label9.move(30, 400)
-            self.label9.setStyleSheet("color: black;")
-            self.label9.adjustSize()
-
-            #from file.py import bestfertilizer
-            #bestfertilizer= "npk"
-            self.label10 = QLabel(best_fert, self)
-            self.label10.setFont(QFont(font_family2, 15))
-            self.label10.move(30,450)
-            self.label10.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
+            self.label10.setText(best_fert)
             self.label10.adjustSize()
-
-            self.label11 = QLabel("estimated yield", self)
-            self.label11.setFont(QFont(font_family2, 15))
-            self.label11.move(300, 400)
-            self.label11.setStyleSheet("color: black;")
-            self.label11.adjustSize()
-
-            #from file.py import estimatedyield
-            self.label12 = QLabel(yield_est, self)
-            self.label12.setFont(QFont(font_family2, 15))
-            self.label12.move(300,450)
-            self.label12.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
+            self.label12.setText(f"{yield_est:.2f}"+" ton")
             self.label12.adjustSize()
-
+            
             # Show notification
             self.text_soil.clear()
             self.text_crop.clear()
