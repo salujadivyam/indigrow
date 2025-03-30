@@ -5,6 +5,9 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.metrics import accuracy_score, mean_absolute_error
 
+
+
+
 path = r"sources\irrigation_data_with_next_crop_v2.csv"
 try:
     df = pd.read_csv(path)
@@ -57,7 +60,7 @@ print(f"Best Pesticide Accuracy: {accuracy_score(y_test, y_pest_new) * 100:.2f}%
 # Model 5: Predict crop yield
 y_predictor_yield = df['Crop_Yield_ton']
 x_train, x_test, y_train, y_test = train_test_split(x, y_predictor_yield, test_size=0.2, random_state=42)
-yield_model = RandomForestRegressor(n_estimators=100, random_state=42)
+yield_model = RandomForestRegressor(n_estimators=100, random_state=42, min_samples_leaf=2)
 yield_model.fit(x_train, y_train)
 y_yield_new = yield_model.predict(x_test)
 
@@ -87,5 +90,6 @@ def predict(state, district, soil, crop):
     print(f"Best Fertilizer to use is: {best_fert}")
     print(f"Best Pesticide to use is: {best_pest}")
     return irrigation_method, best_crop, best_fert, yield_est
+predict("Bihar","Muzaffarpur","Red","Coffee")
 
 
