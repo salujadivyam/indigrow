@@ -149,16 +149,28 @@ def frontend():
             self.label3.adjustSize()
 
             #from file.py import weather
-            weather= "Sunny"
-            self.label4 = QLabel(weather, self)
+            self.label4 = QLabel("-", self)
             self.label4.setFont(QFont(font_family2, 15))
             self.label4.move(30,310)
             self.label4.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
             self.label4.adjustSize()
 
+            self.label13 = QLabel("rain probability", self)
+            self.label13.setFont(QFont(font_family2, 15))
+            self.label13.move(330, 260)
+            self.label13.setStyleSheet("color: black;")
+            self.label13.adjustSize()
+
+            #from file.py import rainprobability
+            self.label14 = QLabel("-", self)
+            self.label14.setFont(QFont(font_family2, 15))
+            self.label14.move(330,310)
+            self.label14.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
+            self.label14.adjustSize()
+
             self.label5 = QLabel("irrigation", self)
             self.label5.setFont(QFont(font_family2, 15))
-            self.label5.move(300, 260)
+            self.label5.move(660, 260)
             self.label5.setStyleSheet("color: black;")
             self.label5.adjustSize()
 
@@ -166,13 +178,13 @@ def frontend():
             #irrigation_method= "Drip Irrigation"
             self.label6 = QLabel("-", self)
             self.label6.setFont(QFont(font_family2, 15))
-            self.label6.move(300,310)
+            self.label6.move(660,310)
             self.label6.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
             self.label6.adjustSize()
 
             self.label7 = QLabel("best crop", self)
             self.label7.setFont(QFont(font_family2, 15))
-            self.label7.move(650, 260)
+            self.label7.move(30, 400)
             self.label7.setStyleSheet("color: black;")
             self.label7.adjustSize()
 
@@ -180,34 +192,32 @@ def frontend():
             #bestcrop= "rice"
             self.label8 = QLabel("-", self)
             self.label8.setFont(QFont(font_family2, 15))
-            self.label8.move(650,310)
+            self.label8.move(30,450)
             self.label8.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
             self.label8.adjustSize()
 
             self.label9 = QLabel("best fertilizer", self)
             self.label9.setFont(QFont(font_family2, 15))
-            self.label9.move(30, 400)
+            self.label9.move(330, 400)
             self.label9.setStyleSheet("color: black;")
             self.label9.adjustSize()
 
-            #from file.py import bestfertilizer
-            #bestfertilizer= "npk"
             self.label10 = QLabel("-", self)
             self.label10.setFont(QFont(font_family2, 15))
-            self.label10.move(30,450)
+            self.label10.move(330,450)
             self.label10.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
             self.label10.adjustSize()
 
             self.label11 = QLabel("estimated yield", self)
             self.label11.setFont(QFont(font_family2, 15))
-            self.label11.move(300, 400)
+            self.label11.move(660, 400)
             self.label11.setStyleSheet("color: black;")
             self.label11.adjustSize()
 
             #from file.py import estimatedyield
             self.label12 = QLabel("-", self)
             self.label12.setFont(QFont(font_family2, 15))
-            self.label12.move(300,450)
+            self.label12.move(660,450)
             self.label12.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
             self.label12.adjustSize()
 
@@ -238,31 +248,45 @@ def frontend():
             print("Importing backend module...")
             try:
                 from backend import predict
+                from weather import get_weather_data_for_frontend
                 print("backend module imported successfully")
             except Exception as e:
                 print(f"Error importing backend: {e}")
 
             try:
                 irrigation_method, best_crop, best_fert, yield_est = predict(state, district, soil, crop)
+                weather, rain_probability, max_temp = get_weather_data_for_frontend(district)
+                print()
                 print("Predict function output:", irrigation_method, best_crop, best_fert, yield_est)
+                print()
+                print("Weather data:", weather, rain_probability, max_temp)
             except Exception as e:
                 print(f"Error in predict function: {e}")
                 return
             
-            self.label6.setText("👨‍🌾" + irrigation_method)
+            self.label4.setText(weather)
+            self.label4.adjustSize()
+            self.label14.setText(rain_probability + "%")
+            self.label14.adjustSize()
+            self.label6.setText(irrigation_method)
             self.label6.adjustSize()
-            self.label8.setText("🌾"+ best_crop)
+            self.label8.setText(best_crop)
             self.label8.adjustSize()
-            self.label10.setText("🌱" + best_fert)
+            self.label10.setText(best_fert)
             self.label10.adjustSize()
-            self.label12.setText("📈" + f"{yield_est:.2f}"+" ton")
+            self.label12.setText(f"{yield_est:.2f}"+" ton")
             self.label12.adjustSize()
+            
+            from text_to_speech import speak
+            speak(f"Good Day, the best method for irrigation as per your details is {irrigation_method}, the best fertilizer that can be used for your crop is {best_fert}, and the estimated yield from your crop would come out to be {yield_est:.2f} Tons.",
+                  f"Shubh din, aaj mausam aanshik roop se baadal rahega, taapmaan {max_temp} ke aaspaas rehne ki ummid hai aur baarish ki sambhavana {rain_probability}% hai. Aapke vivaran ke anusaar sinchai ke liye sabse acchi vidhi {irrigation_method} hai, aapki fasal ke liye istemal kiya ja sakne wala sabse accha urvarak {best_fert} hai, aur aapki fasal se anumaanit upaj {yield_est:.2f} ton niklegi.")
             
             # Show notification
             self.text_soil.clear()
             self.text_crop.clear()
             self.text_state.clear()
             self.text_district.clear()
+
 
 
     app = QApplication(sys.argv)
