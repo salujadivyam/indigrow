@@ -172,7 +172,7 @@ def frontend():
 
             self.label7 = QLabel("best crop", self)
             self.label7.setFont(QFont(font_family2, 15))
-            self.label7.move(600, 260)
+            self.label7.move(650, 260)
             self.label7.setStyleSheet("color: black;")
             self.label7.adjustSize()
 
@@ -180,7 +180,7 @@ def frontend():
             #bestcrop= "rice"
             self.label8 = QLabel("-", self)
             self.label8.setFont(QFont(font_family2, 15))
-            self.label8.move(600,310)
+            self.label8.move(650,310)
             self.label8.setStyleSheet("border: 1px solid grey; padding: 5px; border-radius: 20px;")
             self.label8.adjustSize()
 
@@ -249,13 +249,13 @@ def frontend():
                 print(f"Error in predict function: {e}")
                 return
             
-            self.label6.setText(irrigation_method)
+            self.label6.setText("👨‍🌾" + irrigation_method)
             self.label6.adjustSize()
-            self.label8.setText(best_crop)
+            self.label8.setText("🌾"+ best_crop)
             self.label8.adjustSize()
-            self.label10.setText(best_fert)
+            self.label10.setText("🌱" + best_fert)
             self.label10.adjustSize()
-            self.label12.setText(f"{yield_est:.2f}"+" ton")
+            self.label12.setText("📈" + f"{yield_est:.2f}"+" ton")
             self.label12.adjustSize()
             
             # Show notification
