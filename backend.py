@@ -5,9 +5,6 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.metrics import accuracy_score, mean_absolute_error
 
-
-
-
 path = r"sources\backend_dataset.csv"
 try:
     df = pd.read_csv(path)
