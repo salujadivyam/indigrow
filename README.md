@@ -1,10 +1,4 @@
-Indigrow - README
-
-Team Name: HackKnights
-
-Hackathon Name: Hacknite
-
-Project Name: Indigrow
+Indigrow
 
 
 Overview
