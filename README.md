@@ -132,7 +132,7 @@ Future Extent:
      4. Support in multiple languages for a worldwide audience.
 
 Made by 
-@atharv-rem
+Atharv remeshan , Divyam Saluja, Shreyansh V
 
 
 
