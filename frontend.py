@@ -39,7 +39,7 @@ def frontend():
             self.label2.setFont(QFont(font_family2, 23))
             self.label2.setAlignment(Qt.AlignCenter)
             self.label2.setStyleSheet("color: black;")
-            self.label2.move(748,395)  # Set position to (0, 0) to center it below the first label
+            self.label2.move(748,395)  
             self.label2.adjustSize()
 
             # Button to open indigrow dashboard in a new window
@@ -64,7 +64,7 @@ def frontend():
             self.next_button.move(self.width() - self.next_button.width() - button_margin, self.height() - self.next_button.height() - button_margin)
 
         def open_second_page(self):
-            """Opens SecondPage in a separate window without closing FirstPage"""
+            #Opens SecondPage in a separate window without closing FirstPage
             self.second_page = SecondPage()
             self.second_page.show()
 
@@ -72,11 +72,11 @@ def frontend():
     class SecondPage(QWidget):
         def __init__(self):
 
-            font_path1 = "C:/Users/athar/Downloads/hackknights/sources/KronaOne-Regular.ttf"
+            font_path1 = "sources\KronaOne-Regular.ttf"
             font_id1 = QFontDatabase.addApplicationFont(font_path1)
             font_family1 = QFontDatabase.applicationFontFamilies(font_id1)[0] if font_id1 != -1 else "Arial"
 
-            font_path2 = "C://Users//athar//Downloads//hackknights//sources//InriaSans-Bold.ttf"
+            font_path2 = "sources\InriaSans-Bold.ttf"
             font_id2 = QFontDatabase.addApplicationFont(font_path2)
             font_family2 = QFontDatabase.applicationFontFamilies(font_id2)[0] if font_id2 != -1 else "Arial"
 
@@ -94,7 +94,7 @@ def frontend():
 
             # Image beside title
             self.image_label = QLabel(self)
-            pixmap = QPixmap("C:/Users/athar/Downloads/hackknights/sources/Vector.svg")
+            pixmap = QPixmap("sources\Vector.svg")
             self.image_label.setPixmap(pixmap)
             self.image_label.setScaledContents(True)
             self.image_label.resize(50, 50)
@@ -222,11 +222,11 @@ def frontend():
             self.label12.adjustSize()
 
         def process_input(self):
-            font_path1 = "C:/Users/athar/Downloads/hackknights/sources/KronaOne-Regular.ttf"
+            font_path1 = "sources\KronaOne-Regular.ttf"
             font_id1 = QFontDatabase.addApplicationFont(font_path1)
             font_family1 = QFontDatabase.applicationFontFamilies(font_id1)[0] if font_id1 != -1 else "Arial"
 
-            font_path2 = "C://Users//athar//Downloads//hackknights//sources//InriaSans-Bold.ttf"
+            font_path2 = "sources\InriaSans-Bold.ttf"
             font_id2 = QFontDatabase.addApplicationFont(font_path2)
             font_family2 = QFontDatabase.applicationFontFamilies(font_id2)[0] if font_id2 != -1 else "Arial"
             state = self.text_state.text()
@@ -242,8 +242,6 @@ def frontend():
             msg.setWindowTitle("Success")
             msg.setStandardButtons(QMessageBox.Ok)
             msg.exec_()
-
-            # Clears input fields after submission
 
             print("Importing backend module...")
             try:
@@ -277,11 +275,12 @@ def frontend():
             self.label12.setText(f"{yield_est:.2f}"+" ton")
             self.label12.adjustSize()
             
+            
             from text_to_speech import speak
             speak(f"Good Day, the best method for irrigation as per your details is {irrigation_method}, the best fertilizer that can be used for your crop is {best_fert}, and the estimated yield from your crop would come out to be {yield_est:.2f} Tons.",
                   f"Shubh din, aaj mausam aanshik roop se baadal rahega, taapmaan {max_temp} ke aaspaas rehne ki ummid hai aur baarish ki sambhavana {rain_probability}% hai. Aapke vivaran ke anusaar sinchai ke liye sabse acchi vidhi {irrigation_method} hai, aapki fasal ke liye istemal kiya ja sakne wala sabse accha urvarak {best_fert} hai, aur aapki fasal se anumaanit upaj {yield_est:.2f} ton niklegi.")
             
-            # Show notification
+            # Clear input fields after submission
             self.text_soil.clear()
             self.text_crop.clear()
             self.text_state.clear()

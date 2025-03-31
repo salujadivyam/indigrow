@@ -8,7 +8,7 @@ from sklearn.metrics import accuracy_score, mean_absolute_error
 
 
 
-path = r"sources\irrigation_data_with_next_crop_v2.csv"
+path = r"sources\backend_dataset.csv"
 try:
     df = pd.read_csv(path)
 except FileNotFoundError:
@@ -90,6 +90,5 @@ def predict(state, district, soil, crop):
     print(f"Best Fertilizer to use is: {best_fert}")
     print(f"Best Pesticide to use is: {best_pest}")
     return irrigation_method, best_crop, best_fert, yield_est
-predict("Bihar","Muzaffarpur","Red","Coffee")
 
 
