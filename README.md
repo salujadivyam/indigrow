@@ -131,13 +131,9 @@ Future Extent:
 
      4. Support in multiple languages for a worldwide audience.
 
-Participants:
+Made by 
+@atharv-rem
 
-    Atharv Remeshan
-
-    Divyam Saluja
-
-    Shreyansh V
 
 
    
